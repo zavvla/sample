@@ -1,0 +1,116 @@
+@import "variable"
+@import "functions"
+@import "mix"
+
+*,
+*::before,
+*::after
+	box-sizing: border-box
+
+.icon
+	display: inline-block
+	width: 1em
+	height: 1em
+	stroke-width: 0
+	stroke: currentColor
+	fill: currentColor
+
+svg
+	display: inline-block
+h1, h2, h3, h4, h5, h6
+	margin: 0
+	+font(null, null, null)
+
+h1
+	+media-breakpoint-up(md)
+		+font(rem(48px), 700)
+		line-height: rem(54px)
+
+h2
+	+media-breakpoint-up(md)
+		+font(rem(36px), 700)
+		line-height: rem(42px)
+
+h3
+	+media-breakpoint-up(md)
+		+font(rem(18px), 600)
+		line-height: rem(30px)
+
+h3
+	+media-breakpoint-up(md)
+		+font(rem(30px), 700)
+		line-height: rem(36px)
+
+button, input, optgroup, select, textarea
+	+font(inherit, inherit, inherit)
+	margin: 0
+
+input[type="checkbox"],
+input[type="radio"]
+	display: none
+input[type="checkbox"] + label,
+input[type="radio"] + label
+	display: inline-flex
+	position: relative
+	user-select: none
+	color: inherit
+	+font(inherit,inherit,inherit)
+	cursor: pointer
+	vertical-align: middle
+input[type="checkbox"] + label,
+input[type="radio"] + label
+	&::before
+		content: ""
+		display: inline-block
+		vertical-align: middle
+		min-width: 18px
+		height: 18px
+		margin-right: 9px
+		overflow: hidden
+		border: 1px solid inherit
+		background: inherit
+	+hover-focus-active
+		outline: none
+		&::before
+			border-color:  inherit
+			background-color:  inherit
+input[type="checkbox"] + label
+	&::before
+		border-radius: 4px
+input[type="radio"] + label
+	&::before
+		border-radius: 50%
+input[type="checkbox"]:checked + label
+	&::before
+		border-color: inherit
+		background: inherit url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAJCAYAAAAGuM1UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACBSURBVHgBlZDBCYAwDEV/rYIXwRE8Ck7RUZysF/foGt7sGEKJtYkieKjUnEr6HvmJQkGNth90Q47fVTEcMeAAVDEc4YmCUX/gdd69mpZuY4DC1fiC+a/mXClYAho3WhigRQ4WgUgbreUCIqVZyMHAvbREYClNkm4GfoSXxPtkYK4TirNhxQw58IkAAAAASUVORK5CYII=') center center no-repeat
+input[type="radio"]:checked + label
+	&::before
+		border-color: inherit
+		background-color: inherit
+	&::after
+		position: absolute
+		top: 6px
+		left: 6px
+		content: ''
+		display: block
+		background-color: inherit
+		width: 6px
+		height: 6px
+		border-radius: 50%
+		overflow: hidden
+
+.container
+	+make-container()
+	+make-container-max-widths()
+	+media-breakpoint-down(sm)
+		padding-left: 15px
+		padding-right: 15px
+
+ul
+	margin: 0
+	padding: 0
+	list-style-type: none
+
+p
+	margin: 0 0 10px

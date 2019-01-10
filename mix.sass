@@ -77,7 +77,7 @@
 		@content
 
 
-=font($size: null, $weight: null, $family: null, $style: null, $line-height: null)
+=font($size: null, $weight: null, $family: null, $line-height: null , $style: null)
 	font:
 		@if ($size != null)
 			size: $size
@@ -113,3 +113,27 @@
 	&:active
 		@if ($pressed != null)
 			color: $pressed
+=lg($pos, $G1, $G2: false, $G3: false, $G4: false, $G5: false, $G6: false, $G7: false, $G8: false, $G9: false, $G10: false)
+	$pos-type: type-of(nth($pos, 1))
+	@if ($pos-type == color) or (nth($pos, 1) == "transparent")
+		$G10: $G9
+		$G9: $G8
+		$G8: $G7
+		$G7: $G6
+		$G6: $G5
+		$G5: $G4
+		$G4: $G3
+		$G3: $G2
+		$G2: $G1
+		$G1: $pos
+		$pos: top
+	$usual:($G1)
+	$webkit: color-stop($G1)
+	@each $g in $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10
+		@if $g != false
+			$usual: $usual + ',' + $g
+			$webkit: $webkit + ',' + color-stop($g)
+	$usual: unquote($usual)
+	$webkit: unquote($webkit)
+	background-color: nth($G1, 1)
+	background: linear-gradient($pos, $usual)

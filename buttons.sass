@@ -1,0 +1,23 @@
+@import "mix"
+
+.btn
+	+flex(inline-flex, center, null)
+	+font(null, null, null)
+	border: 1px solid transparent
+	transition: background-color .2s ease, border-color .2s ease
+	user-select: none
+	outline: none
+	&:not(:disabled):not(.disabled)
+		cursor: pointer
+	&--center
+		justify-content: center
+	&--end
+		justify-content: flex-end
+	&--size-name
+		padding: 15px 30px
+		border-radius: 28px
+		+font(rem(18px), 500, null, rem(24px), null)
+	&--outline-name
+		+hover-focus-active
+	&--name
+		+hover-focus-active

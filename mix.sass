@@ -76,20 +76,6 @@
 	&:active
 		@content
 
-
-=font($size: null, $weight: null, $family: null, $line-height: null , $style: null)
-	font:
-		@if ($size != null)
-			size: $size
-		@if ($weight != null)
-			weight: $weight
-		@if ($family != null)
-			family: $family
-		@if ($style != null)
-			style: $style
-	@if ($line-height != null)
-		line-height: $line-height
-
 =flex($display: flex, $align: center, $justify: center)
 	@if ($display != null)
 		display: $display

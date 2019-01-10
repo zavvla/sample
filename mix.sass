@@ -1,0 +1,115 @@
+=media-breakpoint-up($name, $breakpoints: $grid-breakpoints)
+	$min: breakpoint-min($name, $breakpoints)
+	@if $min
+		@media (min-width: $min)
+			@content
+	@else
+		@content
+
+=media-breakpoint-down($name, $breakpoints: $grid-breakpoints)
+	$max: breakpoint-max($name, $breakpoints)
+	@if $max
+		@media (max-width: $max)
+			@content
+	@else
+		@content
+
+=media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints)
+	$min: breakpoint-min($lower, $breakpoints)
+	$max: breakpoint-max($upper, $breakpoints)
+	@if $min != null and $max != null
+		@media (min-width: $min) and (max-width: $max)
+			@content
+	@else if $max == null
+		@include media-breakpoint-up($lower, $breakpoints)
+			@content
+	@else if $min == null
+		@include media-breakpoint-down($upper, $breakpoints)
+			@content
+
+=media-breakpoint-only($name, $breakpoints: $grid-breakpoints)
+	$min: breakpoint-min($name, $breakpoints)
+	$max: breakpoint-max($name, $breakpoints)
+	@if $min != null and $max != null
+		@media (min-width: $min) and (max-width: $max)
+			@content
+	@else if $max == null
+		@include media-breakpoint-up($name, $breakpoints)
+			@content
+	@else if $min == null
+		@include media-breakpoint-down($name, $breakpoints)
+			@content
+
+=make-container()
+	width: 100%
+	margin-right: auto
+	margin-left: auto
+
+=make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints)
+	@each $breakpoint, $container-max-width in $max-widths
+		@include media-breakpoint-up($breakpoint, $breakpoints)
+			max-width: $container-max-width
+
+
+=hover
+	&:hover
+		@content
+
+=hover-focus
+	&:hover,
+	&:focus
+		@content
+=focus-active
+	&:active,
+	&:focus
+		@content
+
+=plain-hover-focus
+	&,
+	&:hover,
+	&:focus
+		@content
+
+=hover-focus-active
+	&:hover,
+	&:focus,
+	&:active
+		@content
+
+
+=font($size: null, $weight: null, $family: null, $style: null, $line-height: null)
+	font:
+		@if ($size != null)
+			size: $size
+		@if ($weight != null)
+			weight: $weight
+		@if ($family != null)
+			family: $family
+		@if ($style != null)
+			style: $style
+	@if ($line-height != null)
+		line-height: $line-height
+
+=flex($display: flex, $align: center, $justify: center)
+	@if ($display != null)
+		display: $display
+	@if ($align != null)
+		align-items: $align
+	@if ($justify != null)
+		justify-content: $justify
+
+=link($color: inherit, $hover: inherit, $pressed: inherit, $decorator: null)
+	@if ($color != null)
+		color: $color
+	&:hover
+		@if ($hover != null)
+			color: $hover
+		@if ($decorator != null)
+			text-decoration: underline
+			text-decoration-color: $decorator
+		@else
+			text-decoration: none
+	&:focus,
+	&:active
+		@if ($pressed != null)
+			color: $pressed

@@ -84,6 +84,19 @@
 	@if ($justify != null)
 		justify-content: $justify
 
+=font($size: null, $weight: null, $family: null, $style: null, $line-height: null)
+	font:
+		@if ($size != null)
+			size: $size
+		@if ($weight != null)
+			weight: $weight
+		@if ($family != null)
+			family: $family
+		@if ($style != null)
+			style: $style
+	@if ($line-height != null)
+		line-height: $line-height
+
 =link($color: inherit, $hover: inherit, $pressed: inherit, $decorator: null)
 	@if ($color != null)
 		color: $color
